@@ -1,0 +1,200 @@
+/* Additional properties that influence positioning */
+
+.violet {
+    background-color: rgb(146, 105, 146);
+    border: 3px solid purple;
+}
+
+.red {
+    background-color: rgb(243, 156, 156);
+    border: 3px solid red;
+}
+
+.blue {
+    background-color: rgb(144, 144, 241);
+    border: 3px solid blue;
+}
+
+.green {
+    background-color: rgb(151, 238, 151);
+    border: 3px solid green;
+}
+
+.orange {
+    background-color: rgb(252, 209, 129);
+    border: 3px solid orange;
+}
+
+
+/* Margin collapsing
+
+When there are two adjacent vertical margins, the greater of the two is used and the other is ignored. The example below illustrates: */
+
+.five {
+    margin: 5px 0;
+}
+
+.ten {
+    margin: 10px 0;
+}
+
+.twenty {
+    margin: 20px 0;
+}
+
+
+/* As you can see, the margin between the 5px and 10px blocks is 10px, and the margin between the 10px and 20px blocks is 20px. This is because the adjacent margins collapse, and only the greater of the two is applied. */
+
+
+/* The following three snippets illustrate the difference between collapsing margins and non-collapsing margins. */
+
+.m {
+    margin: 10px;
+    background-color: #fb9a99;
+}
+
+.parent {
+    margin: 10px;
+    background-color: #a6cee3;
+}
+
+#eg1 {
+    background-color: #b2df8a;
+}
+
+
+/* margins collapse both between siblings and between parents. The "Hello world" text is only 10 px from the top.  */
+
+.m2 {
+    overflow: auto;
+    margin: 10px;
+    background-color: #fb9a99;
+}
+
+.parent2 {
+    overflow: auto;
+    margin: 10px;
+    background-color: #a6cee3;
+}
+
+#eg2 {
+    overflow: auto;
+    background-color: #b2df8a;
+}
+
+
+/* added overflow: auto to every div. This means that every div creates its own block formatting context. Notice how the margins of sibling divs still collapse, but margins between parents and children do not. */
+
+.m3 {
+    margin: 10px;
+    background-color: #fb9a99;
+    border: 3px solid #e31a1c;
+}
+
+.parent3 {
+    margin: 10px;
+    background-color: #a6cee3;
+    border: 3px solid #1f78b4;
+}
+
+#eg3 {
+    background-color: #b2df8a;
+    border: 3px solid #33a02c;
+}
+
+
+/* added a border to every div instead of the overflow. When borders are added, the "Hello world" text is offset 30px from the top because the margins are no longer adjoining - they are separated by a border in this case. Again, only sibling margins collapse. */
+
+
+/* max-width, max-height, min-width and min-height */
+
+
+/* There is some subtlety to this description. For example, when the height of the parent div is less than the height of the content of the child div, then setting height: 100% will result in a rendering that's different from min-height: 100%. The examples below illustrate: */
+
+#eg4 {
+    /* see example online */
+    height: 10%;
+}
+
+.height {
+    height: 10%;
+}
+
+#eg5 {
+    height: 100%;
+}
+
+.min-height {
+    min-height: 100%;
+}
+
+
+/* As you can see:
+
+- if you scroll the first example, where height: 100% was set, you can see that the height of the div matches the parent's height and the content overflows the borders of the div.
+- in the second example, where min-height: 100% is used, the height of the div matches its contents. */
+
+
+/* Pseudo elements */
+
+.example:before {
+    content: 'Hello';
+}
+
+.example:after {
+    content: '!!!';
+}
+
+
+/* content: url() - see online example */
+
+.example2:before {
+    content: url(img/puppy.jpeg);
+}
+
+
+/* content: counter() - see online example */
+
+
+/* content: attr() */
+
+a:after {
+    content: " (" attr(href) ")";
+}
+
+
+/* Box sizing (CSS3) */
+
+
+/* The example below illustrates the difference between a box with a 400px width and 10px borders and 10px padding when using content-box vs. border-box sizing: */
+
+.content-box {
+    box-sizing: content-box;
+    width: 400px;
+}
+
+.border-box {
+    box-sizing: border-box;
+    width: 400px;
+}
+
+.content-box,
+.border-box {
+    border-width: 10px;
+    padding: 10px;
+}
+
+.red2 {
+    width: 400px;
+    border-width: 0px;
+    background-color: rgb(243, 156, 156);
+}
+
+.border-box,
+.red2 {
+    position: relative;
+    left: 20px;
+}
+
+
+/* As you can see, the border-box sized box is exactly 400px wide, while the content-box sized box takes up 440px on screen (2 * 10 px borders + 2 * 10px padding). */
